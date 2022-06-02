@@ -1,6 +1,11 @@
 import type { FindArticleQuery, FindArticleQueryVariables } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
+interface Props
+  extends CellSuccessProps<FindArticleQuery, FindArticleQueryVariables> {
+  rand: number
+}
+
 export const QUERY = gql`
   query FindArticleQuery($id: Int!) {
     article: post(id: $id) {
@@ -22,8 +27,12 @@ export const Failure = ({
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({
-  article,
-}: CellSuccessProps<FindArticleQuery, FindArticleQueryVariables>) => {
-  return <div>{JSON.stringify(article)}</div>
+export const Success = ({ article, id, rand }: Props) => {
+  return (
+    <>
+      <div>The id is {id}</div>
+      <div>The rand is {rand}</div>
+      <div>{JSON.stringify(article)}</div>
+    </>
+  )
 }
