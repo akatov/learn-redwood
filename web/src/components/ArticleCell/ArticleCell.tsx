@@ -1,5 +1,6 @@
 import type { FindArticleQuery, FindArticleQueryVariables } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import Article from '../Article/Article'
 
 interface Props
   extends CellSuccessProps<FindArticleQuery, FindArticleQueryVariables> {
@@ -33,6 +34,7 @@ export const Success = ({ article, id, rand }: Props) => {
       <div>The id is {id}</div>
       <div>The rand is {rand}</div>
       <div>{JSON.stringify(article)}</div>
+      <Article key={article.id} article={article} />
     </>
   )
 }
