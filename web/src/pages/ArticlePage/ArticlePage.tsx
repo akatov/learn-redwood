@@ -1,4 +1,3 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 const ArticlePage = () => {
@@ -12,7 +11,6 @@ const ArticlePage = () => {
       </p>
       <p>
         My default route is named <code>article</code>, link to me with `
-        <Link to={routes.article()}>Article</Link>`
       </p>
     </>
   )

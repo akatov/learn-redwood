@@ -28,7 +28,9 @@ export const Success = ({ articles }: CellSuccessProps<ArticlesQuery>) => {
         <article key={article.id}>
           <header>
             <h2>
-              <Link to={routes.article()}>{article.title}</Link>
+              <Link to={routes.article({ id: article.id })}>
+                {article.title}
+              </Link>
             </h2>
           </header>
           <p>{article.body}</p>
