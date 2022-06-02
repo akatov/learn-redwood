@@ -28,12 +28,10 @@ export const Failure = ({
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({ article, id, rand }: Props) => {
+export const Success = ({ article, rand }: Props) => {
   return (
     <>
-      <div>The id is {id}</div>
       <div>The rand is {rand}</div>
-      <div>{JSON.stringify(article)}</div>
       <Article key={article.id} article={article} />
     </>
   )
