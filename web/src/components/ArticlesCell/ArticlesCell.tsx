@@ -3,7 +3,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 export const QUERY = gql`
   query ArticlesQuery {
-    posts {
+    articles: posts {
       id
     }
   }
@@ -17,10 +17,10 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({ posts }: CellSuccessProps<ArticlesQuery>) => {
+export const Success = ({ articles }: CellSuccessProps<ArticlesQuery>) => {
   return (
     <ul>
-      {posts.map((item) => {
+      {articles.map((item) => {
         return <li key={item.id}>{JSON.stringify(item)}</li>
       })}
     </ul>
