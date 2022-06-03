@@ -8,6 +8,7 @@ import {
   TextField,
 } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from '@redwoodjs/web'
+import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import {
   CreateContactMutation,
@@ -32,7 +33,11 @@ const ContactPage = () => {
   const [create, { loading, error }] = useMutation<
     CreateContactMutation,
     CreateContactMutationVariables
-  >(CREATE_CONTACT)
+  >(CREATE_CONTACT, {
+    onCompleted: () => {
+      toast.success('Thank you for your submission')
+    },
+  })
 
   const onSubmit: SubmitHandler<FormValues> = (input) => {
     console.log(input)
@@ -42,6 +47,7 @@ const ContactPage = () => {
     <>
       <MetaTags title="Contact" description="Contact page" />
 
+      <Toaster />
       <Form onSubmit={onSubmit} config={{ mode: 'all' }}>
         <Label name="name" errorClassName="error">
           Name
