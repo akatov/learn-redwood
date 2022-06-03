@@ -1,4 +1,10 @@
-import { Form, Submit, SubmitHandler, TextField } from '@redwoodjs/forms'
+import {
+  Form,
+  Submit,
+  SubmitHandler,
+  TextAreaField,
+  TextField,
+} from '@redwoodjs/forms'
 import { MetaTags } from '@redwoodjs/web'
 
 interface FormValues {
@@ -14,7 +20,14 @@ const ContactPage = () => {
       <MetaTags title="Contact" description="Contact page" />
 
       <Form onSubmit={onSubmit}>
-        <TextField name="input" />
+        <label htmlFor="name">Name</label>
+        <TextField name="name" />
+
+        <label htmlFor="email">Email</label>
+        <TextField name="email" />
+
+        <label htmlFor="message">Message</label>
+        <TextAreaField name="message" />
         <Submit>save</Submit>
       </Form>
     </>
