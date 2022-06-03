@@ -21,7 +21,7 @@ const ContactPage = () => {
     <>
       <MetaTags title="Contact" description="Contact page" />
 
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} config={{ mode: 'all' }}>
         <Label name="name" errorClassName="error">
           Name
         </Label>
