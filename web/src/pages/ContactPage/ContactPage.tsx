@@ -7,6 +7,7 @@ import {
   SubmitHandler,
   TextAreaField,
   TextField,
+  useForm,
 } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
@@ -31,12 +32,15 @@ interface FormValues {
 }
 
 const ContactPage = () => {
+  const formMethods = useForm()
+
   const [create, { loading, error }] = useMutation<
     CreateContactMutation,
     CreateContactMutationVariables
   >(CREATE_CONTACT, {
     onCompleted: () => {
       toast.success('Thank you for your submission')
+      formMethods.reset()
     },
   })
 
@@ -44,12 +48,19 @@ const ContactPage = () => {
     console.log(input)
     create({ variables: { input } })
   }
+
   return (
     <>
       <MetaTags title="Contact" description="Contact page" />
 
       <Toaster />
-      <Form onSubmit={onSubmit} config={{ mode: 'all' }} error={error}>
+
+      <Form
+        onSubmit={onSubmit}
+        config={{ mode: 'all' }}
+        error={error}
+        formMethods={formMethods}
+      >
         <FormError error={error} wrapperClassName="form-error" />
         <Label name="name" errorClassName="error">
           Name
