@@ -1,6 +1,6 @@
 import type { FindArticleQuery, FindArticleQueryVariables } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import Article from '../Article/Article'
+import Article from 'src/components/Article/Article'
 
 interface Props
   extends CellSuccessProps<FindArticleQuery, FindArticleQueryVariables> {

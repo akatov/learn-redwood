@@ -1,10 +1,4 @@
-import {
-  contacts,
-  contact,
-  createContact,
-  updateContact,
-  deleteContact,
-} from './contacts'
+import { contacts, contact, createContact } from './contacts'
 import type { StandardScenario } from './contacts.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
@@ -34,22 +28,5 @@ describe('contacts', () => {
     expect(result.name).toEqual('String')
     expect(result.email).toEqual('String')
     expect(result.message).toEqual('String')
-  })
-
-  scenario('updates a contact', async (scenario: StandardScenario) => {
-    const original = await contact({ id: scenario.contact.one.id })
-    const result = await updateContact({
-      id: original.id,
-      input: { name: 'String2' },
-    })
-
-    expect(result.name).toEqual('String2')
-  })
-
-  scenario('deletes a contact', async (scenario: StandardScenario) => {
-    const original = await deleteContact({ id: scenario.contact.one.id })
-    const result = await contact({ id: original.id })
-
-    expect(result).toEqual(null)
   })
 })
