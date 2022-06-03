@@ -32,7 +32,7 @@ interface FormValues {
 }
 
 const ContactPage = () => {
-  const formMethods = useForm()
+  const formMethods = useForm({ mode: 'all' })
 
   const [create, { loading, error }] = useMutation<
     CreateContactMutation,
@@ -55,12 +55,7 @@ const ContactPage = () => {
 
       <Toaster />
 
-      <Form
-        onSubmit={onSubmit}
-        config={{ mode: 'all' }}
-        error={error}
-        formMethods={formMethods}
-      >
+      <Form onSubmit={onSubmit} error={error} formMethods={formMethods}>
         <FormError error={error} wrapperClassName="form-error" />
         <Label name="name" errorClassName="error">
           Name
@@ -79,10 +74,10 @@ const ContactPage = () => {
           name="email"
           validation={{
             required: true,
-            // pattern: {
-            //   value: /^[^@]+@[^.]+\..+$/,
-            //   message: 'Please enter a valid email address',
-            // },
+            pattern: {
+              value: /^[^@]+@[^.]+\..+$/,
+              message: 'Please enter a valid email address',
+            },
           }}
           errorClassName="error"
         />
